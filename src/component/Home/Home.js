@@ -1,19 +1,22 @@
 import React from 'react';
-import Additional from './Additional';
-import Additional2 from './Additional2';
+import Appointment from './Appointment';
+
 import Banner from './Banner';
+import Exceptional from './Exceptional';
 import './Home.css'
 import Info from './Info';
+import Review from './Review';
 import Service from './Service';
 
 const Home = () => {
     return (
-        <div className='home'>
+        <div className='home p-12'>
             <Banner></Banner>
             <Info></Info>
             <Service></Service>
-            <Additional></Additional>
-            <Additional2></Additional2>
+            <Exceptional></Exceptional>
+            <Appointment></Appointment>
+            <Review></Review>
         </div>
     );
 };

@@ -1,35 +1,36 @@
 import React from 'react';
 import clock from '../../assets/icons/clock.svg'
+import phone from '../../assets/icons/phone.svg'
+import marker from '../../assets/icons/marker.svg'
+import SingleInfo from './SingleInfo';
 const Info = () => {
+
+    // const infos = [
+    //     {
+    //         _id: 1,
+    //         tittle: 'Opening Hours',
+    //         details: 'Lorem Ipsum is simply dummy text of the pri',
+    //         img: clock
+    //     },
+    //     {
+    //         _id: 2,
+    //         tittle: 'Visit our location',
+    //         details: 'Lorem Ipsum is simply dummy text of the pri',
+    //         img: phone
+    //     },
+    //     {
+    //         _id: 3,
+    //         tittle: 'Contact us now',
+    //         details: 'Lorem Ipsum is simply dummy text of the pri',
+    //         img: marker
+    //     }
+
+    // ]
     return (
-        <div className='grid mx-auto p-5 gap-4 md:grid-cols-1 lg:grid-cols-3'>
-            <div className='lg:flex md:items-center justify-center md:mx-auto rounded-2xl lg:align-center text-white mx-auto px-8 py-6 bg-gradient-to-r from-secondary to-primary'>
-                <div>
-                    <img src={clock} alt="clock" />
-                </div>
-                <div className='ml-5'>
-                    <h1>Opening Hours</h1>
-                    <p>Lorem Ipsum is simply dummy text of the pri</p>
-                </div>
-            </div>
-            <div className='lg:flex md:items-center justify-center md:mx-auto rounded-2xl lg:align-center text-white mx-auto px-8 py-6 bg-accent'>
-                <div>
-                    <img src={clock} alt="clock" />
-                </div>
-                <div className='ml-5 '>
-                    <h1>Opening Hours</h1>
-                    <p>Lorem Ipsum is simply dummy text of the pri</p>
-                </div>
-            </div>
-            <div className='lg:flex md:items-center justify-center md:mx-auto rounded-2xl lg:align-center text-white mx-auto px-8 py-6 bg-gradient-to-r from-secondary to-primary'>
-                <div>
-                    <img  src={clock} alt="clock" />
-                </div>
-                <div className='ml-5'>
-                    <h1>Opening Hours</h1>
-                    <p>Lorem Ipsum is simply dummy text of the pri</p>
-                </div>
-            </div>
+        <div className='grid mx-auto p-5 gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+            <SingleInfo bg='bg-gradient-to-r from-secondary to-primary' tittle={'Opening Hours'} details={'Lorem Ipsum is simply dummy text of the pri'} img={clock}></SingleInfo>
+            <SingleInfo bg='bg-accent' tittle={'Visit our location'} details={'Lorem Ipsum is simply dummy text of the pri'} img={marker}></SingleInfo>
+            <SingleInfo bg='bg-gradient-to-r from-secondary to-primary' tittle={'Opening Hours'} details={'Lorem Ipsum is simply dummy text of the pri'} img={phone}></SingleInfo>
         </div>
     );
 };
