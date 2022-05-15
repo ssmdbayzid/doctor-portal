@@ -7,8 +7,7 @@ const Appointment = () => {
     return (
         <section
             style={{
-                background: `url(${appointment})`,
-                height: ''
+                background: `url(${appointment})`
             }}
             className='flex mt-16  items-center justify-center'
         >
