@@ -15,8 +15,8 @@ const Appointment = () => {
                     <img className='mt-[-100px] rounded' src={doctor}/>
                 </div>
                 <div className='flex-1 p-16 w-1/2 text-white'>
-                    <h1 class="text-5xl font-bold">Box Office News!</h1>
-                    <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                    <h1 className="text-5xl font-bold">Box Office News!</h1>
+                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     <Button>Get Starts</Button>
                 </div>
 

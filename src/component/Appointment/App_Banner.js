@@ -10,9 +10,9 @@ const App_Banner = ({date, setDate}) => {
     // const [date, setDate] = useState(new Date());
 
     return (
-        <div class="hero min-h-screen">
-            <div class="hero-content flex-col lg:flex-row-reverse">
-                <img src={chair} alt="" class="max-w-sm rounded-lg shadow-2xl" />
+        <div className="hero min-h-screen">
+            <div className="hero-content flex-col lg:flex-row-reverse">
+                <img src={chair} alt="" className="max-w-sm rounded-lg shadow-2xl" />
                 <div className='w-1/2 mx-10 akign-left'>
                     <DayPicker 
                     mode="single"
