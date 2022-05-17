@@ -1,15 +1,8 @@
 
 import React from 'react';
-import Button from '../Button';
+// import Button from '../Button';
 
-const SlotService = ({service}) => {
-
-    const [text, setText] = ('')
-
-    
-    if(text){
-        console.log(text)
-    }
+const SlotService = ({service, setTreatment}) => {
 
 
     const {serviceName, slot} = service;
@@ -22,15 +15,11 @@ const SlotService = ({service}) => {
                 </p>
                 <p>{slot.length} {slot.length > 1? 'spaces' : 'space'} available</p>
                 <div className="card-actions mx-auto mt-8 justify-end">
-                    {/* <Button
+                    <label
+                    for="treatment-modal" class="btn modal-button"
                     disabled={slot.length === 0}
                     onClick={()=>setTreatment(service)}
-                    >Book Appointment</Button> */}
-
-                    <Button
-                    disabled={slot.length === 0}
-                    onClick={()=>setText('this is text for service')}
-                    >Book Appointment</Button>
+                    >Book Appointment</label>
                 </div>
             </div>
         </div>

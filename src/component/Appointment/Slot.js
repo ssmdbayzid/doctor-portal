@@ -5,9 +5,7 @@ import TreatmentModal from './TreatmentModal';
 const Slot = () => {
 
     const [services, setServices] = useState([])
-    // const [treatment, setTreatment] = useState(null)
-
-    const [text, setText] = useState('')
+    const [treatment, setTreatment] = useState(null)
 
     useEffect(()=>{
         fetch('services.json')
@@ -15,12 +13,8 @@ const Slot = () => {
         .then(data=>setServices(data))
     },[])
 
-    // if(treatment){
-    //     console.log(treatment)
-    // }
-
-    if(text){
-        console.log(text)
+    if(treatment){
+        console.log(treatment)
     }
 
     return (
@@ -32,16 +26,16 @@ const Slot = () => {
                     services.map(service => <SlotService
                         key={service._id}
                         service={service}
-                        setText={setText}
+                        setTreatment={setTreatment}
                     ></SlotService>)
                 }
 
-                {/* {
+                {
                     treatment && <TreatmentModal
                     key={treatment._id}
                     treatment={treatment}
                     ></TreatmentModal>
-                } */}
+                }
             </div>
 
         </div>
