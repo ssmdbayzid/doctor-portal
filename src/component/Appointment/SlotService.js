@@ -1,15 +1,19 @@
+
 import React from 'react';
 import Button from '../Button';
 
 const SlotService = ({service}) => {
-    const {serviceName, time} = service;
+    const {serviceName, slot} = service;
     return (
-        <div class="card text-center w-96 bg-base-100 shadow-xl">
+        <div class="card text-center lg-max-w-lg shadow-xl">
             <div class="card-body">
                 <h2 class=" mx-auto card-title">{serviceName}</h2>
-                <p>{time}</p>
+                <p>
+                    {slot.length > 0 ? <span>{slot[0]}</span> : <span className='text-red-600'>No Slot Available</span>}
+                </p>
+                <p>{slot.length} {slot.length > 1? 'spaces' : 'space'} available</p>
                 <div class="card-actions mx-auto mt-8 justify-end">
-                    <Button>Book Appointment</Button>
+                    <Button disabled={slot.length === 0} >Book Appointment</Button>
                 </div>
             </div>
         </div>
@@ -17,3 +21,4 @@ const SlotService = ({service}) => {
 };
 
 export default SlotService;
+// {slot.length == 0 && isDisabled}
