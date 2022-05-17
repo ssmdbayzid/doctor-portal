@@ -3,7 +3,7 @@ import Appointment from './Appointment';
 
 import Banner from './Banner';
 import Exceptional from './Exceptional';
-import Footer from './Footer';
+import Footer from '../Share/Footer';
 import './Home.css'
 import Info from './Info';
 import Review from './Review';
