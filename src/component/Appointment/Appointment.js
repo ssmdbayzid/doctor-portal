@@ -19,7 +19,7 @@ const Appointment = () => {
 
             { date && <App_Banner date={date} setDate={setDate}></App_Banner>}
             { date && <ServiceContainer date={date}></ServiceContainer>}
-            <Slot></Slot>
+            {date && <Slot date={date}></Slot>}
             <Footer></Footer>
         </div>
     );

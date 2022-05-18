@@ -9,14 +9,14 @@ const SlotService = ({service, setTreatment}) => {
     return (
         <div className="card text-center lg-max-w-lg shadow-xl">
             <div className="card-body">
-                <h2 className=" mx-auto card-title">{serviceName}</h2>
+                <h2 className=" mx-auto text-secondary card-title">{serviceName}</h2>
                 <p>
                     {slot.length > 0 ? <span>{slot[0]}</span> : <span className='text-red-600'>No Slot Available</span>}
                 </p>
                 <p>{slot.length} {slot.length > 1? 'spaces' : 'space'} available</p>
                 <div className="card-actions mx-auto mt-8 justify-end">
                     <label
-                    for="treatment-modal" class="btn modal-button"
+                    htmlFor="treatment-modal" className="btn btn-secondary hover:text-white modal-button"
                     disabled={slot.length === 0}
                     onClick={()=>setTreatment(service)}
                     >Book Appointment</label>
