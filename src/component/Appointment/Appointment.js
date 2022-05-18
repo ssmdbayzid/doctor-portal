@@ -14,9 +14,6 @@ const Appointment = () => {
     
     return (
         <div className='px-12'>
-            {/* <App_Banner date={date} setDate={setDate}></App_Banner>
-            <ServiceContainer date={date}></ServiceContainer> */}
-
             { date && <App_Banner date={date} setDate={setDate}></App_Banner>}
             { date && <ServiceContainer date={date}></ServiceContainer>}
             {date && <Slot date={date}></Slot>}

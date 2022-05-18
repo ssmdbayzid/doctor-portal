@@ -1,5 +1,6 @@
 import React from 'react';
 import { format } from 'date-fns';
+import cover from '../../assets/images/dental-cover.jpg'
 
 const TreatmentModal = ({ treatment, date, setTreatment }) => {
     const { serviceName, slot } = treatment
@@ -14,17 +15,19 @@ const TreatmentModal = ({ treatment, date, setTreatment }) => {
         console.log( name, number, email, newSlot)
         setTreatment(null)
     }
+
+  
     return (
         <div>
             <input type="checkbox" id="treatment-modal" className="modal-toggle" />
             <div className="modal modal-bottom text-center sm:modal-middle">
-                <div className="modal-box">
+                <div style={{background : `url(${cover})`}} className="modal-box">
                     <label htmlFor="treatment-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 className="font-bold absolute left-2 top-2 text-lg">Booking For: {serviceName}</h3>
+                    <h3 className="font-bold text-secondary absolute left-2 top-2 text-2xl">Booking For: {serviceName}</h3>
                     <form onSubmit={handleModal} className='grid grid-cols-1 gap-2 mt-12 justify-items-center'>
-                        <input type="text" disabled value={format(date, 'PP')} className="input text-sm input-bordered w-full max-w-xs" />
+                        <input type="text" disabled value={format(date, 'PP')} className="input text-lg font-bold  input-bordered w-full max-w-xs" />
 
-                        <select name='newSlot' className="select select-bordered w-full max-w-xs">
+                        <select  name='newSlot' className="select select-bordered  w-full max-w-xs">
                             {
                                 slot.map(newSlot=><option
                                 name='newSlot'     
