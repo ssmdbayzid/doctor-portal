@@ -1,67 +1,115 @@
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { FaGoogle } from "react-icons/fa";
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useForm } from "react-hook-form";
 
 import React from 'react';
 import auth from "../../firebase.init";
+import Loading from "../Share/Loading";
 
 const LogIn = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
-    if (error) {
-        return (
-          <div>
-            <p>Error: {error.message}</p>
-          </div>
-        );
-      }
-      if (loading) {
-        return <p>Loading...</p>;
-      }
-      if (user) {
+    // if (error) {
+    //     return (
+    //       <div>
+    //         <p>Error: {error.message}</p>
+    //       </div>
+    //     );
+    //   }
+    if (loading) {
+        return <Loading></Loading>;
+    }
+    if (user) {
 
-            console.log(user)
-      }
-
-
+        console.log(user)
+    }
 
 
 
 
+
+    const onSubmit = data => console.log(data);
 
     return (
         <div className='flex h-screen justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <form>
+                    <h2 className="mx-auto text-2xl font-bold">Log In</h2>
+
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="text" placeholder="email" className="input input-bordered w-full max-w-xs" />
+                            <input
+                                type="text"
+                                placeholder="email"
+                                className="input input-bordered w-full max-w-xs"
+
+                                {...register("email", {
+                                    required: {
+                                        value: true,
+                                        message: 'Email is required'
+                                    },
+                                    pattern: {
+                                        value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                                        message: 'Provide a valid Email'
+                                    }
+                                }
+                                )}
+
+                            />
                             <label className="label">
-                                <span className="label-text-alt">Alt label</span>
+                                {errors.email?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.email.message}</span>}
+
+                                {errors.email?.type === 'pattern' && <span className="text-red-500 label-text-alt">{errors.email.message}</span>}
                             </label>
                         </div>
+
                         <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                                <span className="label-text">Password</span>
+                            </label>    
+                            <input
+                                type="password"
+                                placeholder="password"
+                                className="input input-bordered w-full max-w-xs"
+                                {...register("password", {
+                                    required: {
+                                        value: true,
+                                        message: 'Password is required'
+                                    },
+                                    minLength: {
+                                        value: 6,
+                                        message: 'Minimum 6 Character massage'
+                                    }
+                                }
+                                )}
+
+                            />
+
                             <label className="label">
-                                <span className="label-text">email</span>
+                                {errors.password?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.password.message}</span>}
+
+                                {errors.password?.type === 'pattern' && <span className="text-red-500 label-text-alt">{errors.password.message}</span>}
                             </label>
-                            <input type="password" placeholder="password" className="input input-bordered w-full max-w-xs" />
-                            <label className="label">
-                                <span className="label-text-alt">Alt label</span>
-                            </label>
+
+
+                            {error && <p className="text-[red] mb-3">{error.message}</p>}
                         </div>
+                        <input type="submit" value="Log In" className="btn btn-bordered w-full max-w-xs" />
+
+
                     </form>
 
-
-                    <h2 className="mx-auto text-2xl font-bold">Log In</h2>
                     <div className="divider">OR</div>
                     <div className="card-actions justify-end">
-                        <button onClick={()=>signInWithGoogle()} className="btn flex btn-secondary w-full">
+                        <button onClick={() => signInWithGoogle()} className="btn hover:text-white flex btn-secondary w-full">
                             <div className="mr-3">
-                                <FaGoogle className=" text-[red] text-xl" />
+                                <FaGoogle className=" text-primary] text-xl" />
                             </div>
                             <h1 className="m;">CONTINUE WITH GOOGLE</h1>
                         </button>
