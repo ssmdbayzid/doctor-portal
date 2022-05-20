@@ -9,6 +9,7 @@ import Contact from './component/Contact/Contact';
 import LogIn from './component/LogIn/LogIn';
 import Register from './component/Register/Register';
 import RequireAutrh from './component/LogIn/RequireAutrh';
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -30,9 +31,9 @@ function App() {
         <Route path='/contact' element={<Contact></Contact>}></Route>
         <Route path='/log-in' element={<LogIn></LogIn>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
-        {/* <Route path='/requireAuth' element={<RequireAutrh></RequireAutrh>}></Route> */}
-        
+        {/* <Route path='/requireAuth' element={<RequireAutrh></RequireAutrh>}></Route> */}        
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

@@ -43,7 +43,7 @@ const ServiceContainer = ({date}) => {
 
             <div className='grid gap-8 grid-cols-1 my-12 lg:grid-cols-3'>
                 {
-                    services.map(service => <Service
+                      services.map(service => <Service
                         key={service.id}
                         name={service.name}
                     ></Service>)
