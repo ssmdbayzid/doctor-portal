@@ -1,37 +1,42 @@
 
 import { FaGoogle } from "react-icons/fa";
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword,useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 
 import React from 'react';
 import auth from "../../firebase.init";
 import Loading from "../Share/Loading";
+import { useNavigate } from "react-router-dom";
 
 const LogIn = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-
+    const [signInWithEmailAndPassword, signInUser, signInLoading, error1, ] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
-    // if (error) {
-    //     return (
-    //       <div>
-    //         <p>Error: {error.message}</p>
-    //       </div>
-    //     );
-    //   }
-    if (loading) {
+    const navigate = useNavigate()
+
+    if (loading || signInLoading) {
         return <Loading></Loading>;
     }
-    if (user) {
+    
+    let signInerror;
 
-        console.log(user)
+    if(error || error1){
+        signInerror = <p className="text-[red]">{error?.message || error1?.message}</p>
+    }
+
+    if (user || signInUser) {
+        navigate('/home')
     }
 
 
+    const onSubmit = data => {
+        // console.log(data)
+        const email = data.email;
+        const password = data.password;
 
-
-
-    const onSubmit = data => console.log(data);
+        signInWithEmailAndPassword(email, password)
+    };
 
     return (
         <div className='flex h-screen justify-center items-center'>
@@ -97,8 +102,7 @@ const LogIn = () => {
                                 {errors.password?.type === 'pattern' && <span className="text-red-500 label-text-alt">{errors.password.message}</span>}
                             </label>
 
-
-                            {error && <p className="text-[red] mb-3">{error.message}</p>}
+                            {signInerror}
                         </div>
                         <input type="submit" value="Log In" className="btn btn-bordered w-full max-w-xs" />
 
