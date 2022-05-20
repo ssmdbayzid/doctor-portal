@@ -3,10 +3,10 @@ import { FaGoogle } from "react-icons/fa";
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import auth from "../../firebase.init";
 import Loading from "../Share/Loading";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -14,6 +14,16 @@ const Register = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const navigate = useNavigate()
+
+
+    useEffect(()=>{
+        if (user || signInUser) {
+            navigate('/home')
+            console.log({user})
+            console.log(signInUser)
+        }
+    },[user, signInUser, navigate])
+
 
     if (loading || signInLoading || updating) {
         return <Loading></Loading>;
@@ -25,9 +35,9 @@ const Register = () => {
         signInerror = <p className="text-[red]">{error?.message || error1?.message || updateError.message}</p>
     }
 
-    if (user || signInUser) {
-        navigate('/home')
-    }
+   
+
+
 
 
     const onSubmit = async data => {
@@ -135,10 +145,8 @@ const Register = () => {
                             {signInerror}
                         </div>
                         <input type="submit" value="Sign Up" className="btn btn-bordered w-full max-w-xs" />
-
-
                     </form>
-
+                    <small>Already Have an Account <Link to='/log-in' className="text-primary">Go to Log In</Link></small>
                     <div className="divider">OR</div>
                     <div className="card-actions justify-end">
                         <button onClick={() => signInWithGoogle()} className="btn hover:text-white flex btn-secondary w-full">

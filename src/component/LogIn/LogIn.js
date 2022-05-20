@@ -3,10 +3,10 @@ import { FaGoogle } from "react-icons/fa";
 import { useSignInWithEmailAndPassword,useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import auth from "../../firebase.init";
 import Loading from "../Share/Loading";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const LogIn = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -14,6 +14,20 @@ const LogIn = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/home'
+
+    useEffect(()=>{
+        if (user || signInUser) {
+            navigate(from, { replace : true})
+
+            console.log({user})
+    
+            console.log(signInUser)
+        }
+
+    },[user, signInUser, from,  navigate])
+
 
     if (loading || signInLoading) {
         return <Loading></Loading>;
@@ -25,9 +39,7 @@ const LogIn = () => {
         signInerror = <p className="text-[red]">{error?.message || error1?.message}</p>
     }
 
-    if (user || signInUser) {
-        navigate('/home')
-    }
+    
 
 
     const onSubmit = data => {
@@ -105,9 +117,8 @@ const LogIn = () => {
                             {signInerror}
                         </div>
                         <input type="submit" value="Log In" className="btn btn-bordered w-full max-w-xs" />
-
-
-                    </form>
+                       </form>
+                       <small>New to Doctors Portal <Link to='/register' className="text-primary">Create New Account</Link></small>
 
                     <div className="divider">OR</div>
                     <div className="card-actions justify-end">

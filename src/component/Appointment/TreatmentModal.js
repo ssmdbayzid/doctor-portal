@@ -1,8 +1,12 @@
 import React from 'react';
 import { format } from 'date-fns';
 import cover from '../../assets/images/dental-cover.jpg'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const TreatmentModal = ({ treatment, date, setTreatment }) => {
+
+    const [user] = useAuthState(auth)
     const { serviceName, slot } = treatment
 
     const handleModal = event =>{
@@ -29,14 +33,16 @@ const TreatmentModal = ({ treatment, date, setTreatment }) => {
 
                         <select  name='newSlot' className="select select-bordered  w-full max-w-xs">
                             {
-                                slot.map(newSlot=><option
+                                slot.map((newSlot, index)=><option
+                                key={index}
                                 name='newSlot'     
                                 value={newSlot}>{newSlot}</option>)
                             }
                         </select>
-                        <input type="text" name='name' placeholder="Full Name" className="input text-sm input-bordered w-full max-w-xs"required />
+                        <input type="text" name='name' disabled value={user? user.displayName : ''} className="input text-sm input-bordered w-full max-w-xs"required />
+                        <input type="email" name='email' disabled value={user? user.email : ''} className="input text-sm input-bordered w-full max-w-xs" required />
+
                         <input type="number" name='number' placeholder="Phone Number" className="input text-sm input-bordered w-full max-w-xs" required />
-                        <input type="email" name='email' placeholder="email" className="input text-sm input-bordered w-full max-w-xs" required />
                         <input className='block mx-auto btn btn-secondary rounded-lg text-white text-lg py-3 w-[320px]' type="submit" value="Submit" />
                     </form>
                     <div className='my-12'>
