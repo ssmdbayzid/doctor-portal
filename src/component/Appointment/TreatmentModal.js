@@ -7,7 +7,7 @@ import Loading from '../Share/Loading';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const TreatmentModal = ({ treatment, date, setTreatment }) => {
+const TreatmentModal = ({ treatment, date, refetch, setTreatment }) => {
 
     const [user, loading] = useAuthState(auth)
 
@@ -53,7 +53,8 @@ const TreatmentModal = ({ treatment, date, setTreatment }) => {
                 toast.error(`Already have and appointment on ${data.booking?.date} at ${data.booking?.slot} `)
             }
         })
-
+        refetch()
+        setTreatment(null)
     }
 
   

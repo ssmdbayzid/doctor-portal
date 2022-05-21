@@ -10,6 +10,10 @@ import LogIn from './component/LogIn/LogIn';
 import Register from './component/Register/Register';
 import RequireAutrh from './component/LogIn/RequireAutrh';
 import { ToastContainer } from 'react-toastify';
+import Dashboard from './component/Dashboard/Dashboard';
+import MyAppointment from './component/Dashboard/MyAppointment';
+import MyReview from './component/Dashboard/MyReview';
+import MyHistry from './component/Dashboard/MyHistry';
 
 
 
@@ -20,17 +24,26 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
-        <Route path='/home' element={<Home></Home>}></Route>
-        <Route path='/about' element={<About></About>}></Route>
-        <Route path='/appointment' element={
+        <Route path='home' element={<Home></Home>}></Route>
+        <Route path='about' element={<About></About>}></Route>
+        <Route path='appointment' element={
             <RequireAutrh>
             <Appointment></Appointment>
             </RequireAutrh>
         }
         ></Route>
-        <Route path='/contact' element={<Contact></Contact>}></Route>
-        <Route path='/log-in' element={<LogIn></LogIn>}></Route>
-        <Route path='/register' element={<Register></Register>}></Route>
+        <Route path='dashboard' element={
+            <RequireAutrh>
+            <Dashboard />
+            </RequireAutrh>
+        } >
+        <Route index element={<MyAppointment></MyAppointment>}></Route>
+        <Route path='review' element={<MyReview></MyReview>}></Route>
+        <Route path='histry' element={<MyHistry></MyHistry>}></Route>
+        </Route>
+        <Route path='contact' element={<Contact></Contact>}></Route>
+        <Route path='log-in' element={<LogIn></LogIn>}></Route>
+        <Route path='register' element={<Register></Register>}></Route>
         {/* <Route path='/requireAuth' element={<RequireAutrh></RequireAutrh>}></Route> */}        
       </Routes>
       <ToastContainer />

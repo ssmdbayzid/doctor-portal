@@ -11,7 +11,7 @@ const Slot = ({ date }) => {
     const [treatment, setTreatment] = useState(null)
     const formattedDate = format(date, 'PP')
 
-    const {data: services, isLoading}   = useQuery('available',  ()=> fetch(`http://localhost:5000/available?date=${formattedDate}`)
+    const {data: services, isLoading, refetch}   = useQuery(['available', formattedDate],  ()=> fetch(`http://localhost:5000/available?date=${formattedDate}`)
     .then(res => res.json())
     
     )
@@ -45,6 +45,7 @@ const Slot = ({ date }) => {
                     treatment && <TreatmentModal
                         key={treatment._id}
                         treatment={treatment}
+                        refetch={refetch}
                         date={date}
                         setTreatment={setTreatment}
                     ></TreatmentModal>
