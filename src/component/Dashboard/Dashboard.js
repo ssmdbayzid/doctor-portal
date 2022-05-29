@@ -8,13 +8,13 @@ const Dashboard = () => {
 
 
 
-
+    // 
     return (
         <div class="drawer drawer-mobile">
             <input id="dashboard-sidebar" type="checkbox" class="drawer-toggle" />
             <div class="drawer-content">
                 {/* <!-- Page content here --> */}
-                <h1 className='text-5xl'>Dash Board</h1>
+                <h1 className='font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600'>Welcome to Dashboard</h1>
                 <Outlet></Outlet>
                 
             </div>
