@@ -14,6 +14,7 @@ import Dashboard from './component/Dashboard/Dashboard';
 import MyAppointment from './component/Dashboard/MyAppointment';
 import MyReview from './component/Dashboard/MyReview';
 import MyHistry from './component/Dashboard/MyHistry';
+import AllUsers from './component/Dashboard/AllUsers';
 
 
 
@@ -40,10 +41,12 @@ function App() {
         <Route index element={<MyAppointment></MyAppointment>}></Route>
         <Route path='review' element={<MyReview></MyReview>}></Route>
         <Route path='histry' element={<MyHistry></MyHistry>}></Route>
+        <Route path='all-users' element={<AllUsers></AllUsers>}></Route>
         </Route>
         <Route path='contact' element={<Contact></Contact>}></Route>
         <Route path='log-in' element={<LogIn></LogIn>}></Route>
         <Route path='register' element={<Register></Register>}></Route>
+        
         {/* <Route path='/requireAuth' element={<RequireAutrh></RequireAutrh>}></Route> */}        
       </Routes>
       <ToastContainer />
